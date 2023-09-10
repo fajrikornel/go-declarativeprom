@@ -9,6 +9,7 @@ import (
 
 const Help = "help"
 
+// extractToMappedMetric transforms user-defined declarative metric structs to mappedMetric struct.
 func extractToMappedMetric(recordedMetric interface{}) mappedMetric {
 	metricName := stringy.New(reflect.TypeOf(recordedMetric).Name()).SnakeCase().ToLower()
 	var metricType MetricType
@@ -48,6 +49,7 @@ func extractToMappedMetric(recordedMetric interface{}) mappedMetric {
 	}
 }
 
+// getOrRegisterMetric returns the registered metric from metricsMap or registers it if not already registered.
 func getOrRegisterMetric(extractedMetric mappedMetric) prometheus.Collector {
 	registeredMetric := metricsMap[extractedMetric.MetricName]
 	if registeredMetric == nil {
