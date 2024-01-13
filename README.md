@@ -2,6 +2,12 @@
 
 DeclarativeProm is a lightweight Prometheus client wrapper for Go, which enables declarative definition and managing of Prometheus metrics.
 
+## Installation
+
+```shell
+go get github.com/fajrikornel/go-declarativeprom
+```
+
 ## Why use this library?
 
 DeclarativeProm provides a simple interface for developers to instrument their applications using Prometheus. It supports:
@@ -37,9 +43,10 @@ type SomeQueueSize struct {
 Whenever we want to do something with the metric, just use the provided functions with the corresponding struct:
 ```go
 dprom.IncrementCounter( // use the IncrementCounter function with the declared metric struct
-    ApiResponseTime{ // specify the labels for this particular incrementation
+    ApiHit{ // specify the labels for this particular incrementation
         Path:   "/test",
         Method: "GET",
+        ResponseCode: 200,
     })
 ```
 
